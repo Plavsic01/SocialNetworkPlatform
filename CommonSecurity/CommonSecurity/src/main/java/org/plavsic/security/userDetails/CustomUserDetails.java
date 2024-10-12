@@ -1,4 +1,4 @@
-package org.plavsic.userDetails;
+package org.plavsic.security.userDetails;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package org.plavsic.util;
+package org.plavsic.security.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -6,7 +6,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
-import org.plavsic.userDetails.CustomUserDetails;
+import org.plavsic.security.userDetails.CustomUserDetails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,9 +20,12 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenUtil {
-
-    private final String secret = "SECRETKEYOASDIJ9U18321838SAJD8I9D9SASECRETKEYOASDIJ9U18321838SAJD8I9D9SASECRETKEYOASDIJ9U18321838SAJD8I9D9SASECRETKEYOASDIJ9U18321838SAJD8I9D9SASECRETKEYOASDIJ9U18321838SAJD8I9D9SA";
+    private final String secret;
     private final long expiration = 60 * 1000 * 60; // 60s * 1000 = 1 minute in milliseconds
+
+    public JwtTokenUtil(@Value("${secret}") String secret) {
+        this.secret = secret;
+    }
 
     public String generateToken(CustomUserDetails userDetails) {
         Date currentDate = new Date();

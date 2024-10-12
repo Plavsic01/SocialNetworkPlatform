@@ -1,4 +1,4 @@
-package org.plavsic.config;
+package org.plavsic.security.config;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
